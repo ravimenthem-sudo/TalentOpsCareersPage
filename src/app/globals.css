@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Analyzer Colors */
+  --color-ink: #0A0A0B;
+  --color-ink-soft: #1A1A1C;
+  --color-paper: #F8F7F4;
+  --color-paper-warm: #FAF8F5;
+  --color-graphite: #2D2D2F;
+  --color-graphite-light: #4A4A4D;
+  --color-mist: #E8E6E3;
+  --color-accent-violet: #7C3AED;
+  --color-accent-violet-deep: #5B21B6;
+  --color-accent-coral: #F97066;
+  --color-accent-coral-soft: #FEB8B3;
+  --color-accent-gold: #D4AF37;
+  --color-accent-gold-soft: #E8D48A;
+  --color-accent-cyan: #06B6D4;
+  --color-accent-indigo: #4F46E5;
+
+  --font-display: 'Playfair Display', serif;
+  --font-elegant: 'Cormorant Garamond', serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #ffffff;
+    /* Force light mode background for now as analyzer is light-themed */
+    --foreground: #171717;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+}

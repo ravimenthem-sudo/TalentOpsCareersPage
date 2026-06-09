@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { generateInterviewQuestions, evaluateInterviewAnswers } from '../../lib/analyzer/geminiService';
 import { InterviewQuestion, InterviewEvaluation } from '../../lib/types';
-import { CheckCircle, XCircle, ArrowRight, ArrowLeft, Loader2, Play, AlertTriangle } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Loader2, Play, AlertTriangle, X } from 'lucide-react';
 
 interface InterviewModuleProps {
     jobDescription: string;
@@ -46,43 +46,43 @@ export const InterviewModule: React.FC<InterviewModuleProps> = ({ jobDescription
 
     if (step === 'intro') {
         return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 backdrop-blur-md p-4 animate-fade-in">
-                <div className="bg-white p-10 rounded-3xl max-w-2xl w-full shadow-2xl relative overflow-hidden">
-                    <button onClick={onClose} className="absolute top-6 right-6 text-gray-400 hover:text-gray-900 transition-colors">
-                        <XCircle className="w-6 h-6" />
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4 animate-fade-in">
+                <div className="bg-[#0D1528] border border-white/10 p-8 rounded-3xl max-w-2xl w-full shadow-2xl relative overflow-hidden text-slate-300">
+                    <button onClick={onClose} className="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors">
+                        <X className="w-5 h-5" />
                     </button>
 
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6 font-display">Skill Validation Protocol</h2>
+                    <h2 className="text-3xl font-bold text-white mb-6 font-display">Skill Validation Protocol</h2>
 
-                    <div className="bg-yellow-50 border border-yellow-200 p-6 rounded-2xl mb-8">
+                    <div className="bg-amber-500/10 border border-amber-500/20 p-6 rounded-2xl mb-8">
                         <div className="flex items-center gap-2 mb-3">
-                            <AlertTriangle className="w-5 h-5 text-yellow-600" />
-                            <h3 className="text-yellow-700 font-bold uppercase tracking-wider text-xs">Protocol Advisory</h3>
+                            <AlertTriangle className="w-5 h-5 text-amber-400" />
+                            <h3 className="text-amber-400 font-bold uppercase tracking-wider text-xs">Protocol Advisory</h3>
                         </div>
-                        <ul className="text-gray-700 text-lg list-disc pl-5 space-y-2 font-serif">
+                        <ul className="text-slate-300 text-sm list-disc pl-5 space-y-2 font-serif">
                             <li>Provide authentic responses based on intrinsic knowledge.</li>
                             <li>Automated pattern detection is active for AI-generated content.</li>
-                            <li className="text-red-600 font-medium">Candidates detected using external AI assistance will be blacklisted.</li>
+                            <li className="text-red-400 font-medium">Candidates detected using external AI assistance will be blacklisted.</li>
                             <li>This is your opportunity to override the algorithmic rejection.</li>
                         </ul>
                     </div>
 
-                    <div className="flex gap-4">
+                    <div className="flex flex-col sm:flex-row gap-4">
                         <button
                             onClick={startInterview}
-                            className="flex-1 bg-black hover:bg-gray-900 text-white py-4 rounded-xl font-medium shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                            className="flex-1 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white py-3.5 rounded-xl font-semibold shadow-lg shadow-indigo-500/10 hover:shadow-indigo-500/20 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
                         >
-                            <Play className="w-5 h-5" />
+                            <Play className="w-4 h-4 fill-white" />
                             Acknowledge & Begin Assessment
                         </button>
                         <button
                             onClick={onClose}
-                            className="px-8 py-4 border border-gray-200 text-gray-600 hover:bg-gray-50 rounded-xl font-medium transition-colors"
+                            className="px-8 py-3.5 border border-white/10 text-slate-300 hover:bg-white/5 rounded-xl font-semibold transition-colors text-sm"
                         >
                             Withdraw
                         </button>
                     </div>
-                    {error && <p className="text-red-500 mt-4 text-center font-medium">{error}</p>}
+                    {error && <p className="text-red-400 mt-4 text-center font-medium text-sm">{error}</p>}
                 </div>
             </div>
         );
@@ -90,10 +90,10 @@ export const InterviewModule: React.FC<InterviewModuleProps> = ({ jobDescription
 
     if (step === 'loading' || step === 'evaluating') {
         return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/90 backdrop-blur-xl">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#070C1A]/95 backdrop-blur-md">
                 <div className="text-center">
-                    <Loader2 className="w-16 h-16 text-blue-600 animate-spin mx-auto mb-6" />
-                    <p className="text-gray-900 font-display text-xl animate-pulse">
+                    <Loader2 className="w-12 h-12 text-indigo-400 animate-spin mx-auto mb-6" />
+                    <p className="text-white font-display text-lg animate-pulse">
                         {step === 'loading' ? 'Synthesizing Technical Constraints...' : 'Analyzing Response Patterns...'}
                     </p>
                 </div>
@@ -106,37 +106,37 @@ export const InterviewModule: React.FC<InterviewModuleProps> = ({ jobDescription
         const isLastQuestion = currentQuestion === questions.length - 1;
 
         return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 backdrop-blur-md p-4">
-                <div className="bg-white p-10 rounded-3xl max-w-3xl w-full shadow-2xl relative">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
+                <div className="bg-[#0D1528] border border-white/10 p-8 rounded-3xl max-w-3xl w-full shadow-2xl relative text-slate-300">
                     {/* Progress Bar */}
-                    <div className="absolute top-0 left-0 h-1.5 bg-blue-600 transition-all duration-500 ease-out"
+                    <div className="absolute top-0 left-0 h-1 bg-indigo-500 transition-all duration-500 ease-out"
                         style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}></div>
 
                     <div className="flex justify-between items-center mb-8">
-                        <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-mono font-bold uppercase tracking-wider">
+                        <span className="inline-block px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 text-[10px] font-mono font-bold uppercase tracking-wider">
                             Technical Probe {currentQuestion + 1}
                         </span>
-                        <span className="text-gray-400 text-sm font-mono">Progress: {Math.round(((currentQuestion + 1) / questions.length) * 100)}%</span>
+                        <span className="text-slate-500 text-xs font-mono">Progress: {Math.round(((currentQuestion + 1) / questions.length) * 100)}%</span>
                     </div>
 
                     <div className="mb-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <h3 className="text-2xl font-display font-medium text-gray-900 mb-6 leading-tight">
+                        <h3 className="text-xl font-display font-bold text-white mb-6 leading-relaxed">
                             {currentQ.question}
                         </h3>
                         <textarea
                             value={answers[currentQ.id] || ''}
                             onChange={(e) => handleAnswerChange(currentQ.id, e.target.value)}
-                            className="w-full bg-gray-50 border border-gray-200 rounded-xl p-6 text-gray-900 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all h-48 resize-none text-lg leading-relaxed shadow-inner font-serif"
+                            className="w-full bg-[#131E36]/50 border border-white/10 rounded-xl p-5 text-white placeholder-slate-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition-all h-48 resize-none text-base leading-relaxed font-serif"
                             placeholder="Articulate your technical solution here..."
                             autoFocus
                         />
                     </div>
 
-                    <div className="flex justify-between items-center pt-6 border-t border-gray-100">
+                    <div className="flex justify-between items-center pt-6 border-t border-white/5">
                         <button
                             onClick={() => setCurrentQuestion(prev => Math.max(0, prev - 1))}
                             disabled={currentQuestion === 0}
-                            className={`text-gray-500 hover:text-gray-900 px-4 py-2 font-medium transition-colors flex items-center gap-2 ${currentQuestion === 0 ? 'opacity-0 pointer-events-none' : ''}`}
+                            className={`text-slate-400 hover:text-white px-4 py-2 font-semibold transition-colors flex items-center gap-2 text-sm ${currentQuestion === 0 ? 'opacity-0 pointer-events-none' : ''}`}
                         >
                             <ArrowLeft className="w-4 h-4" />
                             Previous
@@ -145,14 +145,14 @@ export const InterviewModule: React.FC<InterviewModuleProps> = ({ jobDescription
                         {isLastQuestion ? (
                             <button
                                 onClick={handleSubmit}
-                                className="bg-black hover:bg-green-600 text-white px-8 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
+                                className="bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 text-sm"
                             >
                                 Finalize Submission
                             </button>
                         ) : (
                             <button
                                 onClick={() => setCurrentQuestion(prev => Math.min(questions.length - 1, prev + 1))}
-                                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-medium shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
+                                className="bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white px-8 py-3 rounded-xl font-semibold shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center gap-2 text-sm"
                             >
                                 Next Challenge
                                 <ArrowRight className="w-4 h-4" />
@@ -160,7 +160,7 @@ export const InterviewModule: React.FC<InterviewModuleProps> = ({ jobDescription
                         )}
                     </div>
 
-                    {error && <p className="text-red-500 mt-4 text-center font-medium">{error}</p>}
+                    {error && <p className="text-red-400 mt-4 text-center font-medium text-sm">{error}</p>}
                 </div>
             </div>
         );
@@ -168,28 +168,28 @@ export const InterviewModule: React.FC<InterviewModuleProps> = ({ jobDescription
 
     if (step === 'result' && evaluation) {
         return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 backdrop-blur-md p-4">
-                <div className="bg-white p-10 rounded-3xl max-w-2xl w-full shadow-2xl text-center">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
+                <div className="bg-[#0D1528] border border-white/10 p-8 rounded-3xl max-w-2xl w-full shadow-2xl text-center text-slate-300">
                     <div className="mb-8">
-                        <div className={`w-24 h-24 mx-auto rounded-full flex items-center justify-center text-3xl font-bold font-display mb-6 shadow-soft ${evaluation.is_suitable ? 'bg-green-50 text-green-600 border border-green-100' : 'bg-red-50 text-red-600 border border-red-100'}`}>
+                        <div className={`w-24 h-24 mx-auto rounded-full flex items-center justify-center text-3xl font-bold font-display mb-6 shadow-soft ${evaluation.is_suitable ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
                             {evaluation.score}%
                         </div>
-                        <h2 className="text-4xl font-display font-medium text-gray-900 mb-2">
+                        <h2 className="text-3xl font-display font-bold text-white mb-2">
                             {evaluation.is_suitable ? 'Calibration Successful' : 'Calibration Failed'}
                         </h2>
-                        <p className="text-gray-500 font-serif text-lg">
+                        <p className="text-slate-400 font-serif text-sm">
                             {evaluation.is_suitable ? 'Manual review confirms technical alignment.' : 'Responses did not meet the required technical depth.'}
                         </p>
                     </div>
 
-                    <div className="bg-gray-50 border border-gray-100 p-8 rounded-2xl mb-8 text-left">
-                        <h3 className="text-gray-900 font-bold mb-4 uppercase tracking-wider text-xs border-b border-gray-200 pb-2">Analysis Report</h3>
-                        <p className="text-gray-700 leading-relaxed whitespace-pre-line font-serif text-lg">{evaluation.feedback}</p>
+                    <div className="bg-[#131E36]/30 border border-white/5 p-6 rounded-2xl mb-8 text-left max-h-[30vh] overflow-y-auto">
+                        <h3 className="text-white font-bold mb-4 uppercase tracking-wider text-[10px] border-b border-white/5 pb-2">Analysis Report</h3>
+                        <p className="text-slate-300 leading-relaxed whitespace-pre-line font-serif text-sm">{evaluation.feedback}</p>
                     </div>
 
                     <button
                         onClick={onClose}
-                        className="w-full bg-black hover:bg-gray-800 text-white py-4 rounded-xl font-medium transition-all shadow-lg"
+                        className="w-full bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white py-3.5 rounded-xl font-semibold transition-all shadow-lg"
                     >
                         Close Protocol
                     </button>

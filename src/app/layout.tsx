@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +20,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} min-h-screen flex flex-col`}>
         <Header />
-        <main className="flex-1 bg-white">
+        <main className="flex-1">
           {children}
         </main>
-        <footer className="bg-gray-900 py-12 text-center text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} TalentOps Inc. All rights reserved.</p>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
 }
+

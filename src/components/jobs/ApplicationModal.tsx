@@ -133,18 +133,18 @@ export function ApplicationModal({ isOpen, onClose, onSubmit, jobTitle }: Applic
 
     if (isSuccess) {
         return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 backdrop-blur-sm p-4">
-                <div className="w-full max-w-md rounded-xl bg-white p-8 text-center shadow-2xl animate-in fade-in zoom-in duration-200">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-                        <CheckCircle className="h-10 w-10 text-green-600" />
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+                <div className="w-full max-w-md rounded-2xl bg-[#0D1528] border border-white/10 p-8 text-center shadow-2xl shadow-black/50 animate-in fade-in zoom-in duration-200 text-white">
+                    <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                        <CheckCircle className="h-10 w-10 text-emerald-400" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">Application Sent!</h3>
-                    <p className="mt-2 text-gray-600">
+                    <h3 className="text-2xl font-bold font-display text-white">Application Sent!</h3>
+                    <p className="mt-3 text-slate-300 text-sm leading-relaxed">
                         Thanks for applying to <strong>{jobTitle}</strong>. We've received your application and will be in touch soon.
                     </p>
                     <button
                         onClick={onClose}
-                        className="mt-8 w-full rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-gray-800"
+                        className="mt-8 w-full rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 px-4 py-3 text-sm font-semibold text-white transition-all transform hover:-translate-y-0.5"
                     >
                         Back to Jobs
                     </button>
@@ -154,17 +154,17 @@ export function ApplicationModal({ isOpen, onClose, onSubmit, jobTitle }: Applic
     }
 
     // Common input styles
-    const inputClass = "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm bg-gray-50 border p-2.5";
-    const labelClass = "block text-sm font-semibold text-gray-700 mb-1";
-    const sectionTitleClass = "text-lg font-bold text-gray-900 border-b pb-2 mb-4 mt-8";
+    const inputClass = "mt-1 block w-full rounded-lg border border-white/10 bg-[#131E36]/50 p-2.5 text-sm text-white placeholder-slate-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none transition-colors";
+    const labelClass = "block text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5";
+    const sectionTitleClass = "text-base font-bold text-white border-b border-white/5 pb-2 mb-6 mt-10";
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 backdrop-blur-sm p-4 overflow-y-auto">
-            <div className="relative w-full max-w-5xl rounded-xl bg-white shadow-2xl animate-in fade-in zoom-in duration-200 my-8 h-[90vh] flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto">
+            <div className="relative w-full max-w-5xl rounded-2xl bg-[#0D1528] border border-white/10 shadow-2xl shadow-black/50 animate-in fade-in zoom-in duration-200 my-8 h-[90vh] flex flex-col text-slate-300">
                 {/* Header */}
-                <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4 flex-shrink-0">
-                    <h3 className="text-xl font-bold text-gray-900">Registration Form</h3>
-                    <button onClick={onClose} className="rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors">
+                <div className="flex items-center justify-between border-b border-white/5 px-6 py-4 flex-shrink-0">
+                    <h3 className="text-xl font-bold text-white font-display">Registration Form</h3>
+                    <button onClick={onClose} className="rounded-lg p-2 text-slate-400 hover:bg-white/5 hover:text-white transition-colors">
                         <X className="h-6 w-6" />
                     </button>
                 </div>
@@ -173,11 +173,11 @@ export function ApplicationModal({ isOpen, onClose, onSubmit, jobTitle }: Applic
                 <div className="overflow-y-auto p-8 flex-1">
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {error && (
-                            <div className="rounded-md bg-red-50 p-4 mb-6">
+                            <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4 mb-6 text-red-300">
                                 <div className="flex">
                                     <div className="ml-3">
-                                        <h3 className="text-sm font-medium text-red-800">Submission Failed</h3>
-                                        <div className="mt-2 text-sm text-red-700"><p>{error}</p></div>
+                                        <h3 className="text-sm font-bold">Submission Failed</h3>
+                                        <div className="mt-2 text-xs text-red-400"><p>{error}</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -185,11 +185,11 @@ export function ApplicationModal({ isOpen, onClose, onSubmit, jobTitle }: Applic
 
                         {/* Job Details */}
                         <div>
-                            <h4 className="text-lg font-bold text-gray-900 border-b pb-2 mb-4">Job Details</h4>
+                            <h4 className="text-base font-bold text-white border-b border-white/5 pb-2 mb-6">Job Details</h4>
                             <div>
                                 <label className={labelClass}>Job Role *</label>
-                                <input type="text" value={jobTitle} disabled className={`${inputClass} bg-gray-100 cursor-not-allowed`} />
-                                <p className="text-xs text-blue-600 mt-1 cursor-pointer font-medium">View Job Description</p>
+                                <input type="text" value={jobTitle} disabled className={`${inputClass} opacity-50 bg-[#131E36]/30 cursor-not-allowed`} />
+                                <p className="text-xs text-cyan-400 hover:text-cyan-300 mt-1.5 cursor-pointer font-medium transition-colors">View Job Description</p>
                             </div>
                         </div>
 
@@ -200,7 +200,7 @@ export function ApplicationModal({ isOpen, onClose, onSubmit, jobTitle }: Applic
                                 <div>
                                     <label className={labelClass}>First Name *</label>
                                     <input type="text" name="firstName" required className={inputClass} placeholder="First Name" value={formData.firstName} onChange={handleChange} />
-                                    <p className="text-xs text-gray-500 mt-1">Name should be exactly as per PAN Only</p>
+                                    <p className="text-xs text-slate-400 mt-1">Name should be exactly as per PAN Only</p>
                                 </div>
                                 <div>
                                     <label className={labelClass}>Middle Name</label>
@@ -220,7 +220,7 @@ export function ApplicationModal({ isOpen, onClose, onSubmit, jobTitle }: Applic
                                 <div>
                                     <label className={labelClass}>Email Id *</label>
                                     <input type="email" name="email" required className={inputClass} placeholder="Email Id" value={formData.email} onChange={handleChange} />
-                                    <p className="text-xs text-gray-500 mt-1">Note that no changes will be allowed after submission</p>
+                                    <p className="text-xs text-slate-400 mt-1">Note that no changes will be allowed after submission</p>
                                 </div>
                                 <div>
                                     <label className={labelClass}>Primary Contact Number *</label>
@@ -242,18 +242,18 @@ export function ApplicationModal({ isOpen, onClose, onSubmit, jobTitle }: Applic
 
                             <div className="mt-4">
                                 <label className={labelClass}>WhatsApp Consent *</label>
-                                <div className="flex items-center mt-2 p-3 border rounded-md bg-gray-50">
-                                    <input type="checkbox" name="whatsappConsent" id="whatsapp" className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" checked={formData.whatsappConsent} onChange={handleChange} />
-                                    <label htmlFor="whatsapp" className="ml-2 block text-sm text-gray-900">I consent to receive communication via WhatsApp</label>
+                                <div className="flex items-center mt-2 p-3 border border-white/5 rounded-lg bg-[#131E36]/30">
+                                    <input type="checkbox" name="whatsappConsent" id="whatsapp" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500/50 border-white/10 rounded" checked={formData.whatsappConsent} onChange={handleChange} />
+                                    <label htmlFor="whatsapp" className="ml-2 block text-sm text-slate-300">I consent to receive communication via WhatsApp</label>
                                 </div>
                             </div>
 
                             <div className="mt-4">
                                 <label className={labelClass}>Gender *</label>
                                 <div className="flex gap-6 mt-2">
-                                    <label className="flex items-center"><input type="radio" name="gender" value="Male" className="mr-2" onChange={handleChange} /> Male</label>
-                                    <label className="flex items-center"><input type="radio" name="gender" value="Female" className="mr-2" onChange={handleChange} /> Female</label>
-                                    <label className="flex items-center"><input type="radio" name="gender" value="Other" className="mr-2" onChange={handleChange} /> Other</label>
+                                    <label className="flex items-center text-slate-300"><input type="radio" name="gender" value="Male" className="mr-2 accent-indigo-500" onChange={handleChange} /> Male</label>
+                                    <label className="flex items-center text-slate-300"><input type="radio" name="gender" value="Female" className="mr-2 accent-indigo-500" onChange={handleChange} /> Female</label>
+                                    <label className="flex items-center text-slate-300"><input type="radio" name="gender" value="Other" className="mr-2 accent-indigo-500" onChange={handleChange} /> Other</label>
                                 </div>
                             </div>
                         </div>
@@ -407,26 +407,26 @@ export function ApplicationModal({ isOpen, onClose, onSubmit, jobTitle }: Applic
                             <h4 className={sectionTitleClass}>Attachments</h4>
                             <div className="space-y-4">
                                 <div>
-                                    <label className={labelClass}>Resume/CV *<span className="text-xs font-normal text-gray-500 ml-1">(Supported Format: doc/docx/pdf; Max size: 1 MB)</span></label>
+                                    <label className={labelClass}>Resume/CV *<span className="text-xs font-normal text-slate-400 ml-1">(Supported Format: doc/docx/pdf; Max size: 1 MB)</span></label>
                                     <div className="flex gap-2">
-                                        <input type="file" required accept=".pdf,.doc,.docx" onChange={(e) => handleFileChange(e, 'resume')} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                                        <input type="file" required accept=".pdf,.doc,.docx" onChange={(e) => handleFileChange(e, 'resume')} className="block w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-500/10 file:text-indigo-300 hover:file:bg-indigo-500/20" />
                                     </div>
-                                    {formData.resume && <p className="text-sm text-green-600 mt-1">Uploaded: {formData.resume.name}</p>}
+                                    {formData.resume && <p className="text-sm text-emerald-400 font-semibold mt-1">Uploaded: {formData.resume.name}</p>}
                                 </div>
                                 <div>
-                                    <label className={labelClass}>Passport size photograph *<span className="text-xs font-normal text-gray-500 ml-1">(Supported Format: jpg, jpeg, png; Max size: 3 MB)</span></label>
+                                    <label className={labelClass}>Passport size photograph *<span className="text-xs font-normal text-slate-400 ml-1">(Supported Format: jpg, jpeg, png; Max size: 3 MB)</span></label>
                                     <div className="flex gap-2">
-                                        <input type="file" required accept="image/*" onChange={(e) => handleFileChange(e, 'photo')} className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                                        <input type="file" required accept="image/*" onChange={(e) => handleFileChange(e, 'photo')} className="block w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-500/10 file:text-indigo-300 hover:file:bg-indigo-500/20" />
                                     </div>
-                                    {formData.photo && <p className="text-sm text-green-600 mt-1">Uploaded: {formData.photo.name}</p>}
+                                    {formData.photo && <p className="text-sm text-emerald-400 font-semibold mt-1">Uploaded: {formData.photo.name}</p>}
                                 </div>
                             </div>
                         </div>
 
                         {/* Declaration & Consent */}
-                        <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mt-8">
-                            <h4 className="font-bold text-gray-900 mb-4">Declaration & Consent</h4>
-                            <p className="text-xs text-gray-600 mb-4 leading-relaxed">
+                        <div className="bg-[#131E36]/30 p-6 rounded-xl border border-white/5 mt-8">
+                            <h4 className="font-bold text-white mb-4">Declaration & Consent</h4>
+                            <p className="text-xs text-slate-400 mb-4 leading-relaxed">
                                 Note: In case of any queries regarding Registration form filling, please click here for Chat / call support.
                                 Data Privacy: Accenture is committed to protecting your personal information. Your information will be collected...
                             </p>
@@ -437,16 +437,16 @@ export function ApplicationModal({ isOpen, onClose, onSubmit, jobTitle }: Applic
                                         id="agree"
                                         name="agree"
                                         type="checkbox"
-                                        className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                                        className="h-5 w-5 rounded border-white/10 text-indigo-600 focus:ring-indigo-500/50 bg-[#131E36]/50"
                                         checked={formData.agree}
                                         onChange={handleChange}
                                     />
                                 </div>
                                 <div className="text-sm leading-6">
-                                    <label htmlFor="agree" className="font-medium text-gray-900">
+                                    <label htmlFor="agree" className="font-semibold text-white">
                                         I Agree
                                     </label>
-                                    <p className="text-gray-500 text-xs mt-1">
+                                    <p className="text-slate-500 text-xs mt-1">
                                         I hereby solemnly declare and affirm that the information shared by me...
                                     </p>
                                 </div>
@@ -457,18 +457,18 @@ export function ApplicationModal({ isOpen, onClose, onSubmit, jobTitle }: Applic
                 </div>
 
                 {/* Footer Buttons */}
-                <div className="border-t border-gray-100 px-6 py-4 flex justify-end gap-3 flex-shrink-0 bg-gray-50 rounded-b-xl">
+                <div className="border-t border-white/5 px-6 py-4 flex justify-end gap-3 flex-shrink-0 bg-[#131E36]/30 rounded-b-2xl">
                     <button
                         type="button"
                         onClick={onClose}
-                        className="rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                        className="px-5 py-2.5 bg-transparent border border-white/10 text-slate-300 hover:bg-white/5 rounded-xl text-sm font-semibold transition-all duration-200"
                     >
                         Cancel
                     </button>
                     <button
                         onClick={handleSubmit}
                         disabled={isSubmitting}
-                        className="rounded-md bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50"
+                        className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-semibold rounded-xl shadow-[0_4px_20px_rgba(79,70,229,0.25)] hover:shadow-[0_8px_32px_rgba(79,70,229,0.35)] transform hover:-translate-y-0.5 disabled:opacity-50 transition-all duration-200"
                     >
                         {isSubmitting ? "Submitting..." : "Submit"}
                     </button>
